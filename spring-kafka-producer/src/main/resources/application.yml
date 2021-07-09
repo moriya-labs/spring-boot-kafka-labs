@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: admin
+  profiles:
+    active: local
+  kafka:
+    bootstrap-servers:
+      - ${kafka_bootstrap_servers:localhost:9001}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      
+kafka:
+  request:
+    topic: topic
+  reply:
+    topic: result
+  group.id: spring-boot-group
+    
+server:
+  port: 9002
